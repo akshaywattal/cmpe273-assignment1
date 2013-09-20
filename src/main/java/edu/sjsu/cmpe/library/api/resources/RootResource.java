@@ -12,13 +12,12 @@ import com.yammer.metrics.annotation.Timed;
 import edu.sjsu.cmpe.library.dto.LinkDto;
 import edu.sjsu.cmpe.library.dto.LinksDto;
 
-@Path("/v1/")
+@Path("/v1")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class RootResource {
 
     public RootResource() {
-	// do nothing
     }
 
     @GET
