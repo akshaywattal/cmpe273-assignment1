@@ -35,8 +35,4 @@ public class BookDto extends LinksDto {
 	this.book = book;
     }
 
-	/*public List<Review> getReviews() {
-	return book.getReviews();
-    }*/
-
 }

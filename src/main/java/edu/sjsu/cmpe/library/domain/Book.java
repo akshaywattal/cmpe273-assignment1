@@ -3,6 +3,7 @@ package edu.sjsu.cmpe.library.domain;
 import java.util.List;
 import java.util.ArrayList;
 
+import javax.validation.Valid;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,12 +15,12 @@ public class Book {
 	@JsonProperty
 	private long isbn;
 	
-	@NotEmpty
 	@JsonProperty
+	@NotEmpty
     private String title;
     
-	@NotEmpty
 	@JsonProperty("publication-date")
+	@NotEmpty
     private String publicationDate;
     
 	@JsonProperty
@@ -34,6 +35,8 @@ public class Book {
 	@JsonProperty
     private List<Review> reviews = new ArrayList<Review>();
     
+	@NotEmpty
+	@Valid
 	@JsonProperty
     private Author[] authors;
     
@@ -78,7 +81,6 @@ public class Book {
      * @param publicationDate
      *            the publicationDate to set
      */
-    
     public void setPublicationDate(String publicationDate) {
 	this.publicationDate = publicationDate;
     }
@@ -158,14 +160,18 @@ public class Book {
 		this.reviews = reviews;
 	}
 
+	/**
+     * @return on author
+     */
 	public Author getoneAuthors(int id) {
-		return this.authors[id];
-		
+		return this.authors[id];	
 	}
 	
+	/**
+     * @return on review
+     */
 	public Review getoneReview(int id) {
 		return this.reviews.get(id);
-		
 	}
 
 }

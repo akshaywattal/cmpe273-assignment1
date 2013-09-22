@@ -1,11 +1,14 @@
 package edu.sjsu.cmpe.library.domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Review {
 	private long id;
 	
-	@NotEmpty
+	@NotNull
+	@Min(1)
 	private int rating; 
 	
 	@NotEmpty

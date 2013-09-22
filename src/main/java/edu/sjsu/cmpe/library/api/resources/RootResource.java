@@ -20,6 +20,9 @@ public class RootResource {
     public RootResource() {
     }
 
+    /**
+	 * API No 1: Root API
+	 */
     @GET
     @Timed(name = "get-root")
     public Response getRoot() {
