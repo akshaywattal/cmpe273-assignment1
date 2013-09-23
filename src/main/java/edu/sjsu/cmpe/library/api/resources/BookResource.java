@@ -1,6 +1,7 @@
 package edu.sjsu.cmpe.library.api.resources;
 
 import java.util.HashMap;
+
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -14,6 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.sun.jersey.api.NotFoundException;
 import com.yammer.metrics.annotation.Timed;
 
 import edu.sjsu.cmpe.library.domain.Book;
@@ -106,11 +108,24 @@ public class BookResource {
 	
 	/**
 	 * API No 5: Update book "status" in the library
+	 * @throws Exception 
 	 */
 	@PUT
     @Path("/{isbn}")
     @Timed(name = "update-book")
-    public Response updateBook(@PathParam("isbn") long isbn, @QueryParam("status") String status) {
+    public Response updateBook(@PathParam("isbn") long isbn, @QueryParam("status") String status) throws Exception {
+		
+		try{
+			if(!status.equalsIgnoreCase("avialable") &&
+				!status.equalsIgnoreCase("lost") &&
+				!status.equalsIgnoreCase("checked-out") &&
+				!status.equalsIgnoreCase("in-queue")) {
+			throw new NotFoundException("In-valid value entered for status. Valid values are [avialable,lost,checked-out,in-queue]");
+			
+			}
+		}	catch (Exception e) {
+			throw e;
+		}
 		
 		Book retrieveBook=new_book_entry.get(isbn);
 		retrieveBook.setStatus(status);
